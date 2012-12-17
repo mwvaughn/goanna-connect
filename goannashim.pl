@@ -65,7 +65,7 @@ my $ua = LWP::UserAgent->new;
 
 open (OUT, ">GOanna_out.html");
  
-my $file = join("", "/home/eric/Desktop/Dropbox/TACC/GOanna/",$ID_LIST);
+my $file = join("", $ID_LIST);
  
 my $req = (POST 'http://agbase.hpc.msstate.edu/cgi-bin/tools/GOanna.cgi',
 		Content_Type => 'multipart/form-data',
