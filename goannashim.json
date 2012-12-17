@@ -1,0 +1,16 @@
+{"components":[
+    {"name":"goannashim.pl",
+     "location":"/usr/local3/bin/goanna-connect",
+     "type":"executable",
+     "description":"Adapter script to query AgBase GoAnna; https://github.com/mwvaughn/goanna-connect",
+   "version":"1.0",
+     "attribution":"",
+     "implementation":
+    {"implementor_email":"support@iplantcollaborative.org",
+     "implementor":"ericco92",
+     "test":
+        {"params":[]}}}
+     ],
+ "templates":[],
+ "analyses":[]
+}

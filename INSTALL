@@ -1,0 +1,9 @@
+INSTALL NOTES
+
+On acan.iplantcollaborative.org
+
+cd to /usr/local3/bin
+git clone https://github.com/mwvaughn/goanna-connect.git
+cd goanna-connect
+chmod a+rx goannashim.pl
+~/register_component/register_batch.sh goannashim.json
