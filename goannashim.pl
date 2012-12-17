@@ -50,7 +50,7 @@ my $NR;
 my $RCA;
 my $TAS;
 
-GetOptions("PROGRAM=s" => \$PROGRAM, 'EMAIL=s' => \$EMAIL, 'file_type=s' => \$file_type, 'search_field=s' => \$search_field, 'ID_LIST=s' => \$ID_LIST, 'DATABASE=s{1,3}' => \$DATABASE, 'no_iea=i' => \$no_iea, 'EXPECT=i' => \$EXPECT, 'WORD_SIZE=s' => \$WORD_SIZE,
+GetOptions("PROGRAM=s" => \$PROGRAM, 'EMAIL=s' => \$EMAIL, 'file_type=s' => \$file_type, 'search_field=s' => \$search_field, 'ID_LIST=s' => \$ID_LIST, 'DATABASE=s{1,3}' => \$DATABASE, 'no_iea=i' => \$no_iea, 'EXPECT=s' => \$EXPECT, 'WORD_SIZE=s' => \$WORD_SIZE,
  'GAPCOSTS=s' => \$GAPCOSTS, 'DESCRIPTIONS=i' => \$DESCRIPTIONS, 'ALIGNMENTS=i' => \$ALIGNMENTS,
   'EXP=s' => \$EXP, 'IBA=s' => \$IBA, 'IBD=s'  => \$IBD, 'IC=s' => \$IC, 'IDA=s' => \$IDA, 'IEA=s' => \$IEA, 'IEP=s' => \$IEP, 'IGC=s' => \$IGC, 'IGI=s' => \$IGI, 'IKR=s' => \$IKR, 'IMP=s' => \$IMP, 'IPI=s' => \$IPI, 'IRD=s' => \$IRD, 'ISA=s' => \$ISA, 'ISM=s' => \$ISM, 'ISO=s' => \$ISO, 'ISS=s' => \$ISS, 'NAS=s' => \$NAS, 'ND=s' => \$ND, 'NR=s' => \$NR, 'RCA=s' => \$RCA, 'TAS=s' => \$TAS,
     'bypass_prg_check=i' => \$bypass_prg_check, 'error=i' => \$error);
