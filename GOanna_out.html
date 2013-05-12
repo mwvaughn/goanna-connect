@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><META NAME="keywords" CONTENT="AgBase Chicken Gullus BLAST Bioinformatics GO Gene Ontology Maize ChickBase MSU">
+<META NAME="description" CONTENT="AgBase provides an integrated approach to the use of gene and protein sequence information, the scientific literature (MEDLINE), molecular structures, and related resources, in biomedicine.">
+<head> <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <META HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="PUBLIC">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+<title>AgBase GOanna</title>
+<link href="/css/menu.css" rel="stylesheet" type="text/css">
+<link href="/css/main.css" rel="stylesheet" type="text/css">
+<link href="/css/typography.css" rel="stylesheet" type="text/css" />
+<link href="/css/sidebarmenu.css" rel="stylesheet" type="text/css" />
+<link href="/css/toolstyle.css" rel="stylesheet" type="text/css" />
+<!--[if IE]>
+ <style>
+  .qrytype_div{
+     position:absolute; 
+     padding:0;
+     margin:0; 
+     top: 540; 
+     left: 500;
+     width:250; 
+     visibility:hidden;
+     color:#41200A;
+     font-style:italic;}
+</style> 
+<![endif]-->
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/goanna.js"></script>
+<script type="text/javascript" src="/js/goanna_databases.js"></script>
+<script type="text/javascript" src="/js/tools.js"></script>
+<script type="text/javascript">
+function showChange() {
+var alertmessage= "GOanna database selections has changed.  Now the default databases will filter sequences with no GO annotations or with IEA or ND annotations only.  Deselect the checkbox under the database selection box to revert to database(s) including the non-annotated sequences.";
+
+///No editing required beyond here///// 
+ 
+//answer only once per browser session (0=no, 1=yes) 
+var once_per_session=1 
+ 
+ 
+function get_cookie(Name) { 
+  var search = Name + "=" 
+  var returnvalue = ""; 
+  if (document.cookie.length > 0) { 
+    offset = document.cookie.indexOf(search) 
+    if (offset != -1) { // if cookie exists 
+      offset += search.length 
+      // set index of beginning of value 
+      end = document.cookie.indexOf(";", offset); 
+      // set index of end of cookie value 
+      if (end == -1) 
+         end = document.cookie.length; 
+      returnvalue=unescape(document.cookie.substring(offset, end)) 
+      } 
+   } 
+  return returnvalue; 
+} 
+ 
+function alertornot(){ 
+if (get_cookie('alerted')==''){ 
+loadalert() 
+document.cookie="alerted=yes" 
+} 
+} 
+ 
+function loadalert(){ 
+confirm(alertmessage,"GOanna database change") 
+} 
+ 
+if (once_per_session==0) loadalert() 
+else alertornot() 
+}
+</script>
+<script type="text/javascript">
+function showHideAcc(radioObj)
+{
+var rad_val;
+for (var i=0; i < document.GOAnnaform.file_type.length; i++) {
+   if (document.GOAnnaform.file_type[i].checked) {
+      rad_val = document.GOAnnaform.file_type[i].value;
+      }
+}
+if (document.getElementById) {
+var el = document.getElementById('search_div');
+} else if (document.all) {
+var el = document.all('search_div');
+} else if (document.layers) {
+var el = document.layers['search_div'];
+}
+
+if (rad_val == 'fasta') { 
+  if (el.style) { 
+    el.style.display='none'; 
+    el.style.visibility='hidden'; 
+  } 
+}
+else if (rad_val == 'acc') { 
+  if (el.style) {
+     el.style.display='block'; 
+    el.style.visibility='visible'; 
+   } 
+}
+else {
+  if (el.style) { 
+     el.style.display='none'; 
+    el.style.visibility='hidden'; 
+  } 
+}
+}
+</script>
+</head>
+<!--- <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="javascript:inlineHelp();javascript:showChange();"> -->
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="javascript:inlineHelp();">
+<table width="900" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01">
+   <tr>
+      <td colspan="2">
+          <img src="/img/agbaselettering.gif" border="0"  usemap="#MSU" Alt="AgBase MSU"></td>
+  </tr>
+  <tr>
+     <td>
+         <img src="/img/agbaseiconinfo.gif" border="0" usemap="#AgBase2" Alt="MSU AgBase"></td> 
+    <td>
+<script language="JavaScript">
+<!--
+random_imglink()
+//-->
+</script></td>
+ </tr>
+ <tr>
+<!-- end of top -->
+<map name="MSU" id="MSU">
+  <area shape="rect" coords="-8,1,373,66" href="http://agbase.msstate.edu" alt="AgBase" />
+  <area shape="rect" coords="665,3,900,61" href="http://msstate.edu" />
+</map>
+
+<map name="AgBase2" id="AgBase2">
+  <area shape="rect" coords="2,1,409,156" href="http://agbase.msstate.edu" alt="AgBase" />
+</map>
+<td colspan="7" background="/img/menufullspacer.gif" bgcolor="#99CC33"><div class="menu">
+
+<ul>
+<li><strong><a href="/index.html">HOME<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+</strong>
+  <ul>
+    <li><strong><a href="/cgi-bin/team.pl" title="What is AgBase?">About AgBase</a></strong></li>
+    <li><strong><a href="/cgi-bin/people.pl" title="AgBase Personnel">Personnel</a></strong></li>
+    <li><strong><a href="/cgi-bin/cite.pl" title="Citing AgBase">Citing</a></strong></li>
+    <li><strong><a href="/cgi-bin/admin_login.pl" title="AgBase Admin">Administrators</a></strong></li>
+  </ul>
+  <strong>
+  <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+  </strong></li>
+
+<li><strong><a href="/index.html">SEARCHES<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+	</strong>
+  <ul>
+    <li><strong><a href="/cgi-bin/generateSearchPage.pl" title="AgBase Text">Text</a></strong></li>
+    <li><strong><a href="/cgi-bin/generateBlastPage.pl" title="AgBase BLAST">BLAST</a></strong></li>
+    <li><strong><a href="/cgi-bin/taxbrowser.cgi" title="AgBase Taxonomy">Taxonomy</a></strong></li>
+    <li><strong><a href="/cgi-bin/gobrowser.cgi" title="AgBase Gene Ontology">Gene Ontology</a></strong></li>
+  </ul>
+
+  <strong>
+  <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+  </strong></li>
+
+<li><strong><a href="/cgi-bin/tools/index.cgi"">TOOLS<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+	</strong>
+  <ul>
+    <li><strong><a href="/cgi-bin/tools/index.cgi" title="AgBase Tools Overview">Tools Overview</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/goprofiler_select.pl" title="AgBase GOProfiler">GOProfiler</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/genome2seq.cgi" title="AgBase Genome2Seq">Genome2Seq</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/goretriever_select.pl" title="AgBase GORetriever">GORetriever</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/GOanna.cgi" title="AgBase GOanna">GOanna</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/GOanna2ga.cgi" title="AgBase GOAnna2ga">GOanna2ga</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/goslimviewer_select.pl" title="AgBase GOSlimViewer">GOSlimViewer</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/AutoSlim.cgi" title="AgBase GOSlimAuto">GOSlimAuto</a></strong></li> 
+    <li><strong><a href="/cgi-bin/tools/GA2GEO.cgi" title="AgBase GA2GEO">GA2GEO</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/GOModeler.cgi" title="AgBase GOModeler">GOModeler</a></strong></li>
+    <li><strong><a href="/cgi-bin/tools/arrayider_select.pl" title="AgBase ArrayIDer">ArrayIDer</a></strong></li>
+<!---    <li><strong><a href="/cgi-bin/tools/affyid_select.pl" title="AgBase AffyID">AffyID</a></strong></li> --->
+    <!--- <li><strong><a href="/cgi-bin/tools/arraygomapper_select.pl" title="AgBase ArrayGOMapper">Array GO Mapper (AGOM)</a></strong></li> --->
+    <li><strong><a href="/cgi-bin/tools/GA2GAQ.cgi" title="AgBase GA2GAQ">GO Annotation Quality (GAQ) Score</a></strong></li>
+  </ul>
+  <strong>
+
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</strong></li>
+
+<li><strong><a href="#">ANIMALS<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+	</strong>
+  <ul>
+    <li><strong><a href="/cgi-bin/information/CCatfish.pl" title="AgBase CCatfish">CCatfish</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Cat.pl" title="AgBase Cat">Cat</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Chick.pl" title="AgBase Chick">Chick</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Cow.pl" title="AgBase Bovine">Bovine</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Daphnia.pl" title="AgBase Daphnia">Daphnia</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Dog.pl" title="AgBase Dog">Dog</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/GuineaPig.pl" title="AgBase GuineaPig">GuineaPig</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Horse.pl" title="AgBase Horse">Horse</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Pig.pl" title="AgBase Pig">Pig</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Salmon.pl" title="AgBase Salmon">Salmon</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Sheep.pl" title="AgBase Sheep">Sheep</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Trout.pl" title="AgBase Trout">Trout</a></strong></li>
+  </ul>
+  <strong>
+  <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+  </strong></li>
+
+<li><strong><a  href="#">PLANTS<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+	</strong>
+  <ul>
+    <li><strong><a href="/cgi-bin/information/Cotton.pl" title="AgBase Cotton">Cotton</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Maize.pl" title="AgBase Maize">Maize</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Miscanthus.pl" title="AgBase Miscanthus">Miscanthus</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Pine.pl" title="AgBase Pine">Pine</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Poplar.pl" title="AgBase Poplar">Poplar</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Rice.pl" title="AgBase Rice">Rice</a></strong></li>
+    <li><strong><a href="/cgi-bin/information/Soybean.pl" title="AgBase Soybean">Soybean</a></strong></li>
+  </ul>
+  <strong>
+  <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+  </strong></li>
+
+<li><strong><a  href="/cgi-bin/generateMPpage.pl?org=Microbe">MICROBES<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</strong></li>
+
+<li><strong><a  href="/cgi-bin/generateMPpage.pl?org=Parasite">PARASITES<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</strong></li>
+
+<li><strong><a  href="/cgi-bin/help/index.pl">HELP<!--[if gte IE 7]><!--></a><!--<![endif]-->
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</strong></li>
+
+<li><strong><a  href="/cgi-bin/contact.pl">CONTACT
+
+<!--[if gte IE 7]><!--></a><!--<![endif]-->
+
+<!--[if lte IE 6]><table><tr><td><![endif]-->
+<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+</strong></li>
+
+
+</ul>
+
+
+</div>
+</td>
+        </tr>
+      <tr>
+        <td colspan="7" valign="top" bgcolor="#FFFFFF">
+<div class="maincontent">
+<span class="header_brown">AgBase GOanna</span>
+
+<div class="description">
+<img src="/img/goanna_lizard.png" align="left">
+GOanna allows users to quickly add more GO annotations to their data by transferring GO annotations based on sequence homology. The input file is a text file containing either (1) protein accessions separated by a return/line break; or (2) a fasta file of either nucleotide or protein sequences. You will be notified by email when your GOanna results are ready.
+Please use the navigation provided by the webpage and not the browser back button. <br /><br />
+Retrieve<b> GOanna job status</b> information by clicking <a href="/cgi-bin/tools/GOanna_status.cgi" target=_blank>here</a>.
+<br /> <br />
+<span class="bodycopy">
+Because searching the databases is time consuming, we limit GOanna to 5,000 inputs (accessions or sequences) or an overall file size of 6Mb. For very large jobs, please contact <a href="&#109;ailto:agbase&#64;hpc&#46;msstate&#46;edu">AgBase</a> directly to assist you with your analysis
+</span>
+<br /> <br />
+<span class="bodycopy">
+<b><i>Note</i></b>: Help with Affymetrix probe mapping is available <a href=/cgi-bin/tools/affyid_select.pl>here</a>.
+<br /><br />
+For help using this tool click <a href="/help/annahelp.htm" target=_blank>here</a>.<br />
+An online tutorial for this tool is available <a href="/Education/NABDAWorkshop/tutorial_4/tutorial_4.htm" target=_blank>here</a>.
+<br />
+More information about the tool can be found <a href="http://www.biomedcentral.com/1471-2164/7/229" target=_blank> here</a>. <b><i>GOanna search database statistics can be found <a href="/cgi-bin/agbase_species_blast_detail.pl" target=_blank>here</a></i></b>
+
+</span>
+
+<hr class="hr_gray"><div class="error" name="ErrorDiv" id="ErrorDiv">Please enter an email address<br />You must select at least one evidence code to return.<br />Please enter a file!</div></div>
+
+<div id="jsmsg" class="italic_center">You need javascript enabled to view this page properly.</div>
+<span class="bodycopy">
+   <form name="GOAnnaform" ENCTYPE="multipart/form-data" METHOD=POST>
+       <script type="text/javascript" language="JavaScript">
+             document.getElementById('jsmsg').style.display='none';
+     </script>
+<label class="required">Program:</label>   <select name="PROGRAM">
+    <option value="blastp" selected>blastp - Protein query to protein database</option>
+   <option value="blastx">blastx - Translated (6 frames) DNA query to protein database</option>
+  </select>
+<br /><br /><label class="error_required" title="Please enter a valid email address in order to obtain your results.">Email Address:</label><input type="text" name="EMAIL" size="55" value="" title="Please enter a valid email address in order to obtain your results."> <br />  <label class="bodycopy"></label>  <br /><div style="border: none; width:400px;">
+<label class="required" title="Please select the input file type.">Input File format:</label>
+<input style="padding-left:0;margin-left:0;width:15px;" type="radio"  id="file_type" name="file_type" checked value="fasta" onclick="showHideAcc();">FASTA</input>
+<input style="padding-left:0;margin-left:0;width:15px;" type="radio"  id="file_type" name="file_type" value="acc" onclick="showHideAcc();">ACCESSIONS/GI</input>
+</div>
+<br />
+<div id="search_div" name="search_div" style="visibility:hidden; display:none; padding-bottom: 20px;"><label class="required">Select Accession Type:</label><select  name="search_field" onchange="javascript:inlineHelp();"><option value="Select ID" class="selectext" >>Select Accession Type</option><option value="Unknown_IDs" >ID Not Specified</option><option value="Uniprot_Id" >UniProt ID</option><option value="UniProt_Accession" >UniProt Accession</option><option value="RefSeq" >GenBank Accession</option><option value="GI" >GI Number</option></select><br />
+<div id="qry_unknown_div" name="qry_unknown_div" class="name_option">
+<span style="margin-left: 185px;">Example of ID Not Specified input file:<br></span>
+<span style="margin-left: 200px;">104K_THEPA<br></span>
+<span style="margin-left: 200px;">P87169<br></span>
+<span style="margin-left: 200px;">56119084<br></span>
+<span style="margin-left: 200px;">XP_764072<br></span>
+<span style="margin-left: 200px;">IPR000889<br></span>
+</div>
+<div id="qry_uniprotid_div" name="qry_uniprotid_div" class="name_option">
+<span style="margin-left: 185px;">Example of UniProt ID input file:<br></span>
+<span style="margin-left: 200px;">104K_THEPA<br></span>
+<span style="margin-left: 200px;">108_SOLLC<br></span>
+</div>
+<div id="qry_uniprotacc_div" name="qry_uniprotacc_div" class="name_option">
+<span style="margin-left: 185px;">Example of UniProt Accession input file:<br></span>
+<span style="margin-left: 200px;">P87169<br></span>
+<span style="margin-left: 200px;">Q92358<br></span>
+</div>
+<div id="qry_gi_div" name="qry_gi_div" class="name_option">
+<span style="margin-left: 185px;">Example of GI Number input file:<br></span>
+<span style="margin-left: 200px;">56119084<br></span>
+<span style="margin-left: 200px;">45382927<br></span>
+</div>
+<div id="qry_refseq_div" name="qry_refseq_div" class="name_option">
+<span style="margin-left: 185px;">Example of GenBank Accession input file:<br></span>
+<span style="margin-left: 200px;">XP_764072<br></span>
+<span style="margin-left: 200px;">NP_042707<br></span>
+</div>
+<div id="qry_interpro_div" name="qry_interpro_div" class="name_option">
+<span style="margin-left: 185px;">Example of Interpro input file:<br></span>
+<span style="margin-left: 200px;">IPR014710<br></span>
+<span style="margin-left: 200px;">IPR000889<br></span>
+</div>
+<div id="qry_fasta_div" name="qry_fasta_div" class="name_option">
+<span style="margin-left: 185px;">Example of FASTA input file:<br></span>
+<span style="margin-left: 200px;">>RPOB_ANAMA<br></span>
+<span style="margin-left: 200px;">MVFGELMSSAGDSGPGYVLNDFVFFVGSLYAKSYNSRFLTD<br></span>
+<span style="margin-left: 200px;">>tr|Q544U7|Q544U7_MOUSE<br></span>
+<span style="margin-left: 200px;">MSDGDYDYLIKFLALGDSGVGKTSVLYQYTDGKFNSKFITTVGIDFREKRVVYRANGPD<br></span>
+</div>
+<b><i>**NOTE:  GOanna does not currently support the use of Affymetrix IDs!  
+<br /> For ID Not Specified, GOanna only supports  Uniprot, RefSeq, GenBank,  GI, EMBL
+</i></b> </div><label class="error_required" title="Input is limited to 5,000 records.">File to Upload:</label><input type="file" name="IDLIST" size="55" title="Input is limited to 5,000 records."> <br />  <br /><label class="required" title="Use the control key to select more than 1 database.  Database selections are limited to 3 at a time."><a href="/help/GOanna_databases.htm" target=_blank>Database(s)</a>:</label><select name="DATABASE" multiple size=5 class="large_fld" title="Use the control key to select more than 1 database.  Database selections are limited to 3 at a time."><option value="AgBase"  >AgBase</option><option value="uniprot_sprot"  >SwissProt</option><option value="uniprot_trembl"  >TrEMBL</option><option value="uniprot_swisstrembl"  >UniProt</option><option value="9913"  >Bovine</option><option value="9031"  >Chick</option><option value="9615"  >Dog</option><option value="9796"  >Horse</option><option value="9823"  >Pig</option><option value="rice"  >Rice</option><option value="bird"  >Bird</option><option value="fish"  >Fish</option><option value="fungi"  >Fungi</option><option value="mammal"  >Mammal</option><option value="mouse_chick_human"  >Mouse_Chick_Human</option><option value="nematode"  >Nematode</option><option value="plant"  >Plant</option>      </select>
+  <br /><br />
+  <br /><br />
+  <br />
+<div style="border: none; width:400px; margin-left: 180px;">
+<input style="padding-left:0;margin-left:0;width:15px;" type="checkbox"  id="no_iea" name="no_iea" checked value="1" onChange="fetchDatabases();"></input>
+<span style="padding:0; margin:0; color: red; font-weight:bold; font-style:italic;">Filter sequences and annotations from the selected databases to remove sequences with no GO annotations or with IEA or ND annotations only.</span>
+</div>
+<br />
+
+ <label class="required">
+<a href="http://www.ncbi.nlm.nih.gov/blast/blastcgihelp.shtml#filter" target=_blank>Filter:  </a></label>
+    <input class="checkinput2" type="checkbox" id="FILTER" name="FILTER">
+      <label for="FILTER" class="checklabel2">Low complexity</label>
+ <br/ > <br/ >
+
+<label class="required"><a href="http://www.ncbi.nlm.nih.gov/blast/blastcgihelp.shtml#expect" target=_blank>Expect:</a></label>
+    <input class="short_fld" size=10 value=10e-1 name=EXPECT>
+<br /> <br />
+
+    <label class="required"><a href="http://www.ncbi.nlm.nih.gov/blast/blastcgihelp.shtml#wordsize" target=_blank>Word Size:</a></label>
+    <input class="short_fld" type=text name=WORD_SIZE value=3></input>
+<br /> <br />
+
+    <label class="required" title="Please use default parameter."><a href="http://www.ncbi.nlm.nih.gov/blast/blastcgihelp.shtml#matrix" target=_blank>Matrix:</a></label>
+    <select class="short_fld" name=MATRIX_NAME title="Please use default parameter.">
+        <option>PAM30</option>
+        <option>PAM70</option>
+        <option>BLOSUM80</option>
+        <option selected>BLOSUM62</option>
+        <option>BLOSUM45</option>
+      </select>
+
+  <label>Gap Costs:</label>
+    <select class="med_fld" name=GAPCOSTS>
+        <option>Existence: 9 Extension: 2</option>
+        <option>Existence: 8 Extension: 2</option>
+        <option>Existence: 7 Extension: 2</option>
+        <option>Existence: 12 Extension: 1</option>
+        <option selected>Existence: 11 Extension: 1</option>
+        <option>Existence: 10 Extension: 1</option>
+      </select>
+  <br /><br /> 
+    <label class="required" ><a href="http://www.ncbi.nlm.nih.gov/blast/blastcgihelp.shtml#descriptions" target=_blank>Nbr. of Descriptions:</a></label>
+      <input class="short_fld" type=text name="DESCRIPTIONS" size=4 value=3></input>
+      <label><a href="http://www.ncbi.nlm.nih.gov/blast/blastcgihelp.shtml#alignments" target=_blank>Nbr. of Alignments:</a></label>
+      <input class="short_fld" 1type=text name="ALIGNMENTS" size=4 value=3></input>
+  <br /> <br /> 
+<hr class="hr_gray"><label class="med_fld" style="color:red;font-weight:bold;">Type of Evidence to Return:</label><br /><br /><table width=100%> <tr><td style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="allEvd" name="allEvd" checked value="all" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","all","all");'></input><label class="evd_checklabel" for="all">Check all/Uncheck all</label> <br /><br /></td></tr><tr><td colspan=4 style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="EXPER" name="EXPER" checked value="EXPER" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","EXPER","EXP,IDA,IPI,IMP,IGI,IEP");'></input><label class="evd_checklabel" for="EXPER">Experimental Evidence Codes(EXP,IDA,IPI,IMP,IGI,IEP)</label><br /><br /></td></tr><tr><td colspan=4 style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="COMP" name="COMP" checked value="COMP" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","COMP","IGC,IBA,IBD,IKR,IRD,ISS,ISO,ISA,ISM,RCA");'></input><label class="evd_checklabel" for="COMP">Computational Analysis Evidence Codes(IGC,IBA,IBD,IKR,IRD,ISS,ISO,ISA,ISM,RCA)</label><br /><br /></td></tr><tr><td colspan=4 style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="AUTH" name="AUTH" checked value="AUTH" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","AUTH","TAS,NAS");'></input><label class="evd_checklabel" for="AUTH">Author Statement Evidence Codes(TAS,NAS)</label><br /><br /></td></tr><tr><td colspan=4 style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="CUR" name="CUR" checked value="CUR" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","CUR","IC,ND");'></input><label class="evd_checklabel" for="CUR">Curator Statement Evidence Codes(IC,ND)</label><br /><br /></td></tr><tr><td colspan=4 style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="AUTO" name="AUTO"  value="AUTO" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","AUTO","IEA");'></input><label class="evd_checklabel" for="AUTO">Automatically-assigned Evidence Codes(IEA)</label><br /><br /></td></tr><tr><td colspan=4 style="padding-left: 15px;"><input type="checkbox" class="evd_checkinput" id="OBS" name="OBS" checked value="OBS" onclick='Goanna_EvdCheck("GOAnnaform","IC,IDA,IEA,IEP,IGI,IMP,IPI,ISS,NAS,ND,RCA,TAS,NR,EXP,ISO,ISA,ISM,IGC,IBA,IBD,IKR,IRD","EXPER,COMP,AUTH,CUR,AUTO,OBS","OBS","NR");'></input><label class="evd_checklabel" for="OBS">Obsolete Evidence Codes(NR)</label><br /><br /></td></tr></table><table > <tr> <td width="1%">&nbsp;</td><td class="bodycopy" width="5%"><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="EXP" name="EXP" value="EXP" checked></input></span><label  class="checklabel3" for=EXP >EXP</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IBA" name="IBA" value="IBA" checked></input></span><label  class="checklabel3" for=IBA >IBA</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IBD" name="IBD" value="IBD" checked></input></span><label  class="checklabel3" for=IBD >IBD</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IC" name="IC" value="IC" checked></input></span><label  class="checklabel3" for=IC >IC</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IDA" name="IDA" value="IDA" checked></input></span><label  class="checklabel3" for=IDA >IDA</label></td></tr><tr><td width="1%">&nbsp;</td><td class="bodycopy" width="5%"><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IEA" name="IEA" value="IEA" ></input></span><label  class="checklabel3" for=IEA >IEA</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IEP" name="IEP" value="IEP" checked></input></span><label  class="checklabel3" for=IEP >IEP</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IGC" name="IGC" value="IGC" checked></input></span><label  class="checklabel3" for=IGC >IGC</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IGI" name="IGI" value="IGI" checked></input></span><label  class="checklabel3" for=IGI >IGI</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IKR" name="IKR" value="IKR" checked></input></span><label  class="checklabel3" for=IKR >IKR</label></td></tr><tr><td width="1%">&nbsp;</td><td class="bodycopy" width="5%"><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IMP" name="IMP" value="IMP" checked></input></span><label  class="checklabel3" for=IMP >IMP</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IPI" name="IPI" value="IPI" checked></input></span><label  class="checklabel3" for=IPI >IPI</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="IRD" name="IRD" value="IRD" checked></input></span><label  class="checklabel3" for=IRD >IRD</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="ISA" name="ISA" value="ISA" checked></input></span><label  class="checklabel3" for=ISA >ISA</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="ISM" name="ISM" value="ISM" checked></input></span><label  class="checklabel3" for=ISM >ISM</label></td></tr><tr><td width="1%">&nbsp;</td><td class="bodycopy" width="5%"><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="ISO" name="ISO" value="ISO" checked></input></span><label  class="checklabel3" for=ISO >ISO</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="ISS" name="ISS" value="ISS" checked></input></span><label  class="checklabel3" for=ISS >ISS</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="NAS" name="NAS" value="NAS" checked></input></span><label  class="checklabel3" for=NAS >NAS</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="ND" name="ND" value="ND" ></input></span><label  class="checklabel3" for=ND >ND</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="NR" name="NR" value="NR" checked></input></span><label  class="checklabel3" for=NR >NR</label></td></tr><tr><td width="1%">&nbsp;</td><td class="bodycopy" width="5%"><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="RCA" name="RCA" value="RCA" checked></input></span><label  class="checklabel3" for=RCA >RCA</label><span style="margin-left: 20px;"><input type="checkbox" class="checkinput3" id="TAS" name="TAS" value="TAS" checked></input></span><label  class="checklabel3" for=TAS >TAS</label>        </td>
+  </tr>
+</table>
+<hr class="hr_gray">
+   <input type="hidden" name="bypass_prg_check" value="0" default="0">
+   <input type="hidden" name="error" value="0" default="0">
+
+   <input type="submit" style="margin-left: 15px; height: 25px; width: 100px;" name="submit" value="BLAST">
+   <input type="reset" style="margin-left: 15px; height: 25px; width: 100px;" name="reset" value="Reset">
+</form>
+<br />
+<font size=-1>
+<b>Fiona M McCarthy*, Nan Wang*, G Bryce Magee, Bindu Nanduri, Mark L Lawrence, Evelyn B Camon, Daniel G Barrell, David P Hill, Mary E Dolan, W Paul Williams, Dawn S Luthe, Susan M Bridges* and Shane C Burgess*</b>. 2006. <a href="http://www.biomedcentral.com/1471-2164/7/229" target=_blank>AgBase: a functional genomics resource for agriculture</a>. <i>BMC Genomics</i> 2006, 7:229<br><br>
+*Contributes equally
+<br><br>
+</font>
+</span></div>
+</td>
+	</tr>
+	<tr>
+ <td colspan="7" valign="top">
+ <img src="/img/agbase_14_allwhite.gif" width="900" height="11" alt=""></td> 
+	</tr>
+</table><br />
+<div class="firstfootertext">
+  <a href="&#109;ailto:agbase&#64;hpc&#46;msstate&#46;edu">Contact AgBase</a> |  <a href="http://www.msstate.edu/web/legal.html" target="_blank">Mississippi State University is an Equal Opportunity Institution</a><br/>
+  <table width="900" border="0" align="center" cellpadding="0">
+    <tr>
+      <td><span class="secondfootertext">Database Copyright &copy; Mississippi State University. Permission to use the information contained in this database was given by the researchers/institutes who contributed or published the information. Users of the database are solely responsible for compliance with any copyright restrictions, including those applying to the author abstracts. Documents from this server are provided &quot;AS-IS&quot; without any warranty, expressed or implied. </span></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

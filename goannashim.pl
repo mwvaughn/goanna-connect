@@ -25,6 +25,7 @@ my $DESCRIPTIONS;
 my $ALIGNMENTS;
 my $bypass_prg_check;
 my $error;
+my $EXPECT;
 my $submit;
 
 
@@ -56,7 +57,7 @@ my $TAS;
 GetOptions("PROGRAM=s" => \$PROGRAM, 'EMAIL=s' => \$EMAIL, 'file_type=s' => \$file_type, 'search_field=s' => \$search_field, 'ID_LIST=s' => \$ID_LIST, 'DATABASE=s' => \$DATABASE, 'DATABASE2=s' => \$DATABASE2, 'DATABASE3=s' => \$DATABASE3, 'no_iea=s' => \$no_iea, 'EXPECT=s' => \$EXPECT, 'WORD_SIZE=s' => \$WORD_SIZE,
  'GAPCOSTS=s' => \$GAPCOSTS, 'DESCRIPTIONS=i' => \$DESCRIPTIONS, 'ALIGNMENTS=i' => \$ALIGNMENTS,
   'EXP=s' => \$EXP, 'IBA=s' => \$IBA, 'IBD=s'  => \$IBD, 'IC=s' => \$IC, 'IDA=s' => \$IDA, 'IEA=s' => \$IEA, 'IEP=s' => \$IEP, 'IGC=s' => \$IGC, 'IGI=s' => \$IGI, 'IKR=s' => \$IKR, 'IMP=s' => \$IMP, 'IPI=s' => \$IPI, 'IRD=s' => \$IRD, 'ISA=s' => \$ISA, 'ISM=s' => \$ISM, 'ISO=s' => \$ISO, 'ISS=s' => \$ISS, 'NAS=s' => \$NAS, 'ND=s' => \$ND, 'NR=s' => \$NR, 'RCA=s' => \$RCA, 'TAS=s' => \$TAS,
-    'bypass_prg_check=i' => \$bypass_prg_check, 'error=i' => \$error);
+    'bypass_prg_check=i' => \$bypass_prg_check, 'error=i' => \$error, 'EXPECT=s' => \$EXPECT);
 
 my ($request, $content, $filename, $id, $GAP);
 my @hcontent;
@@ -82,9 +83,9 @@ my $req = (POST 'http://agbase.hpc.msstate.edu/cgi-bin/tools/GOanna.cgi',
 						'DATABASE' => $DATABASE3,
 						'MATRIX_NAME' => 'BLOSUM62',
 						'search_field' => 'Select ID',
-						'EXPECT' => '10e-1',
-						'IEA' => $IEA,
+						'EXPECT' => $EXPECT,
 						'no_iea' => $no_iea,
+						'IEA' => $IEA,
 						'ISO' => $ISO,
 						'EXP' => $EXP,
 						'IBA' => $IBA,
@@ -154,6 +155,7 @@ exit;
 if ( is_success($status) ) {
 			print "The GOanna file downloaded correctly\nIts name is $out_filename\n";
 			sleep(3);
+			unlink "GOanna_out.html";
 			exit;
 			}
 }
